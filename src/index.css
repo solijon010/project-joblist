@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Info: colors */
+  --color-primary: #63baba;
+  --color-primary-10: rgb(92, 164, 164, 0.1);
+  --color-light: #effafa;
+  --color-white: #ffffff;
+  --color-secondary: #2c3a3a;
+  --color-gray: #a1a095;
+
+  /* Info: font */
+  --default-font-family: "League Spartan Variable", sans-serif;
+
+  /* Info: Shadow */
+  --shadow-card-hover: 0 15px 20px -5px #0d718226;
+}
+
+@layer base {
+  body {
+    font-family: var(--default-font-family);
+    @apply bg-light text-base font-medium;
+  }
+}
+
+
+@layer utilities {
+  .container{
+    @apply w-full max-w-[1142px] mx-auto px-4
+  }
+}
