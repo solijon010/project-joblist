@@ -1,33 +1,39 @@
 import { useEffect, useState } from "react";
-import { BASE_API } from "../api/url";
+
+// Proxy orqali ishlash uchun BASE_API ni o'zgartirdik
+export const BASE_API = "/api/project/jobs-list/jobs";
 
 function useFetch() {
   const [data, setData] = useState(null);
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   async function getData() {
-    setloading(true)
+    setLoading(true);
     try {
+      // Proxy orqali fetch
       const response = await fetch(BASE_API);
 
       if (!response.ok) {
-        throw new Error("Ma'lumot olib kelishda xatolik" + response.status);
+        throw new Error("Ma'lumot olib kelishda xatolik: " + response.status);
       }
-      const data = await response.json();
 
-      setData(data.data);
-    } catch (error) {
-        setError(error.message)
-    }finally{
-        setloading(false)
+      const json = await response.json();
+
+      // API'dan data.data qaytadi, shuni set qilamiz
+      setData(json.data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   }
+
   useEffect(() => {
     getData();
-  },[]);
-  
-  return {loading,error,data};
+  }, []);
+
+  return { loading, error, data };
 }
 
 export default useFetch;
