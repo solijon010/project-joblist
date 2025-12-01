@@ -1,1 +1,1 @@
-export const BASE_API = "https://json-api.uz/api/project/jobs-list/jobs";
+export const BASE_API = "/api/project/jobs-list/jobs";
