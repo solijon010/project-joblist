@@ -7,9 +7,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://json-api.uz",
+        target: "https://json-api.uz/api", // api qo‘shildi
         changeOrigin: true,
         secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ""), // /api ni olib tashlaydi
       },
     },
   },
