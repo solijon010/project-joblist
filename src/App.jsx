@@ -4,11 +4,10 @@ import Navbar from "./components/Navbar";
 import useFetch from "./hooks/useFetch";
 
 const App = () => {
-  const { data, loading } = useFetch();
+  const { data, loading, error } = useFetch();
 
-  if (loading) {
-    return <Loading />;
-  }
+  if (loading) return <Loading />;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <>

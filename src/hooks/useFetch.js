@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-// Proxy orqali ishlash uchun BASE_API ni o'zgartirdik
-export const BASE_API = "/api/project/jobs-list/jobs";
+export const BASE_API = "https://vinayak9669.github.io/job-listing-mock-api/data.json";
 
 function useFetch() {
   const [data, setData] = useState(null);
@@ -11,7 +10,6 @@ function useFetch() {
   async function getData() {
     setLoading(true);
     try {
-      // Proxy orqali fetch
       const response = await fetch(BASE_API);
 
       if (!response.ok) {
@@ -19,9 +17,7 @@ function useFetch() {
       }
 
       const json = await response.json();
-
-      // API'dan data.data qaytadi, shuni set qilamiz
-      setData(json.data);
+      setData(json); // GitHub JSON to'g'ridan-to'g'ri array qaytaradi
     } catch (err) {
       setError(err.message);
     } finally {
