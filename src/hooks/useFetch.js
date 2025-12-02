@@ -4,11 +4,10 @@ export const BASE_API = "https://vinayak9669.github.io/job-listing-mock-api/data
 
 function useFetch() {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);  // <-- MUHIM!!!
   const [error, setError] = useState(null);
 
   async function getData() {
-    setLoading(true);
     try {
       const response = await fetch(BASE_API);
 
@@ -17,11 +16,11 @@ function useFetch() {
       }
 
       const json = await response.json();
-      setData(json); // GitHub JSON to'g'ridan-to'g'ri array qaytaradi
+      setData(json);
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      setLoading(false);  // fetch tugaganda loading = false
     }
   }
 

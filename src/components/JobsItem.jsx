@@ -8,11 +8,21 @@ function JobsItem({ job }) {
     postedAt,
     contract,
     location,
+    role,
+    level,
     languages,
     tools
   } = job;
 
-  const skills = [...(languages || []), ...(tools || [])];
+  // API noto‘g‘ri yo‘l beradi → biz to‘g‘rilaymiz
+  const fixedLogo = logo.replace("./", "/");
+
+  const skills = [
+    role,
+    level,
+    ...(languages || []),
+    ...(tools || [])
+  ];
 
   return (
     <li
@@ -22,7 +32,7 @@ function JobsItem({ job }) {
     >
       <img
         className="rounded-full mr-6"
-        src={logo}
+        src={fixedLogo}    // ← faqat shu joy o‘zgaradi!!!
         alt={position}
         width={88}
         height={88}
@@ -32,7 +42,7 @@ function JobsItem({ job }) {
         <div className="flex items-center gap-4 mb-2.5">
           <h3 className="text-primary font-bold text-lg">{company}</h3>
 
-          <div className="flex items-center gap-2 uppercase font-bold text-sm text-white tracking-[-0.11px] ">
+          <div className="flex items-center gap-2 uppercase font-bold text-sm text-white">
             {isNew && (
               <span className="bg-primary pt-1.75 pb-0.75 px-2 rounded-full">
                 NEW!
@@ -50,7 +60,7 @@ function JobsItem({ job }) {
           {position}
         </h2>
 
-        <div className="flex items-center gap-4 text-gray text-lg font-medium tracking-[0.14px]">
+        <div className="flex items-center gap-4 text-gray text-lg font-medium">
           <span>{postedAt}</span>
           <span className="w-1 h-1 rounded-full bg-gray"></span>
           <span>{contract}</span>
@@ -63,7 +73,7 @@ function JobsItem({ job }) {
         {skills.map((s) => (
           <li
             key={s}
-            className="rounded-sm py-1.75 px-2 bg-primary-10 text-primary font-bold tracking-[-0.12px] cursor-pointer hover:bg-primary hover:text-white"
+            className="rounded-sm py-1.75 px-2 bg-primary-10 text-primary font-bold hover:bg-primary hover:text-white cursor-pointer"
           >
             {s}
           </li>

@@ -12,6 +12,7 @@ const App = () => {
   return (
     <>
       <Navbar />
+
       <main className="pt-[4.8125rem] pb-[7.5rem]">
         <div className="container">
           <JobsList data={data} />
